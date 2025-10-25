@@ -1,0 +1,32 @@
+﻿@model GestaoFornecedores.Models.Fornecedor
+
+@{
+    ViewData["Title"] = "Detalhes do Fornecedor";
+}
+
+<h2>Detalhes do Fornecedor</h2>
+
+<div class="card p-3">
+    <p><strong>Nome:</strong> @Model.Nome</p>
+    <p><strong>CNPJ:</strong> @Model.CNPJ</p>
+    <p><strong>Segmento:</strong> @Model.Segmento</p>
+    <p><strong>CEP:</strong> @Model.CEP</p>
+    <p><strong>Endereço:</strong> @Model.Endereco</p>
+    <p>
+        <strong>Foto:</strong><br />
+        @if (!string.IsNullOrEmpty(Model.Foto))
+        {
+            <img src="@Model.Foto" alt="Foto do fornecedor" width="150" class="img-thumbnail" />
+        }
+        else
+        {
+            <span>Sem foto cadastrada</span>
+        }
+    </p>
+</div>
+
+<p class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Excluir</a>
+    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+</p>

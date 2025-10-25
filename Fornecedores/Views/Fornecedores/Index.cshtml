@@ -1,0 +1,52 @@
+﻿@model IEnumerable<GestaoFornecedores.Models.Fornecedor>
+
+@{
+    ViewData["Title"] = "Lista de Fornecedores";
+}
+
+<h2>Lista de Fornecedores</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Novo Fornecedor</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CNPJ</th>
+            <th>Segmento</th>
+            <th>CEP</th>
+            <th>Endereço</th>
+            <th>Foto</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nome</td>
+                <td>@item.CNPJ</td>
+                <td>@item.Segmento</td>
+                <td>@item.CEP</td>
+                <td>@item.Endereco</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Foto))
+                    {
+                        <img src="@item.Foto" width="80" />
+                    }
+                    else
+                    {
+                        <span>Sem foto</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

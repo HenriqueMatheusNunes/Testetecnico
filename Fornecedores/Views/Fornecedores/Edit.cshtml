@@ -1,0 +1,78 @@
+﻿@model GestaoFornecedores.Models.Fornecedor
+
+@{
+    ViewData["Title"] = "Editar Fornecedor";
+}
+
+<h2>Editar Fornecedor</h2>
+
+<form asp-action="Edit" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Nome"></label>
+        <input asp-for="Nome" class="form-control" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CNPJ"></label>
+        <input asp-for="CNPJ" class="form-control" />
+        <span asp-validation-for="CNPJ" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Segmento"></label>
+        <select asp-for="Segmento" class="form-control">
+            <option value="">Selecione...</option>
+            <option>Comércio</option>
+            <option>Serviço</option>
+            <option>Indústria</option>
+        </select>
+        <span asp-validation-for="Segmento" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CEP"></label>
+        <input asp-for="CEP" class="form-control" id="cep" />
+        <span asp-validation-for="CEP" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Endereco"></label>
+        <input asp-for="Endereco" class="form-control" id="endereco" />
+        <span asp-validation-for="Endereco" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="foto">Foto (PNG)</label>
+        <input type="file" name="foto" accept="image/png" class="form-control" />
+        @if (!string.IsNullOrEmpty(Model.Foto))
+        {
+            <p>Foto atual:</p>
+            <img src="@Model.Foto" alt="Foto" width="120" />
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.getElementById("cep").addEventListener("blur", function () {
+            var cep = this.value.replace(/\D/g, '');
+            if (cep.length === 8) {
+                fetch("https://viacep.com.br/ws/" + cep + "/json/")
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.erro) {
+                            document.getElementById("endereco").value =
+                                `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
+                        }
+                    });
+            }
+        });
+    </script>
+}

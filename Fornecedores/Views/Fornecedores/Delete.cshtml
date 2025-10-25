@@ -1,0 +1,28 @@
+﻿@model GestaoFornecedores.Models.Fornecedor
+
+@{
+    ViewData["Title"] = "Excluir Fornecedor";
+}
+
+<h2>Excluir Fornecedor</h2>
+
+<h3>Você tem certeza que deseja excluir este fornecedor?</h3>
+
+<div>
+    <h4>@Model.Nome</h4>
+    <p>CNPJ: @Model.CNPJ</p>
+    <p>Segmento: @Model.Segmento</p>
+    <p>CEP: @Model.CEP</p>
+    <p>Endereço: @Model.Endereco</p>
+    @if (!string.IsNullOrEmpty(Model.Foto))
+    {
+        <p>Foto:</p>
+        <img src="@Model.Foto" alt="Foto" width="120" />
+    }
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Excluir</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
