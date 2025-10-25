@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Fornecedores")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f4c36bea65929bec1bf5ba9ae9a93a0861a12d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Fornecedores")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Fornecedores")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
